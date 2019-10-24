@@ -1,0 +1,19 @@
+{
+    "name": "hlca/sb-consumer",
+    "description": "SB API Consumer",
+    "authors": [
+        {
+            "name": "Hsing-Li Chang",
+            "email": "chang@hsing.li"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "require": {
+        "guzzlehttp/guzzle": "~6.0",
+        "vlucas/phpdotenv": "^3.6"
+    }
+}
