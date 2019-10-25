@@ -10,4 +10,5 @@ $dotenv->load();
 
 echo Grades::list();
 
-var_dump(Grades::create([['grade_id' => '1111', 'name' => 'Test']]));
+var_dump(Grades::createJSON([['grade_id' => '1112', 'name' => 'Test']]));
+var_dump(Grades::updateJSON('1112', 'Test 2'));

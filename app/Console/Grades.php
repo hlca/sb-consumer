@@ -5,7 +5,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
 
-class Grades {
+class Grades extends Command {
 	public static function list() {
 		$tokenGenerator = GenerateToken::run();
 		$client = new Client;
@@ -18,12 +18,22 @@ class Grades {
 		return $request->getBody();
 	}
 
+	public static function createJSON($grades) {
+		echo "\nCreate\n";
+		return self::requestJSON('POST', '/api/grade', ['grades' => $grades]);
+	}
+
+	public static function updateJSON($id, $name) {
+		echo "\nUpdate\n";
+		return self::requestJSON('PUT', '/api/grade/' . $id, [
+			'name' => $name,
+		]);
+	}
+
 	public static function create($grades) {
-		echo json_encode($grades);
 		$tokenGenerator = GenerateToken::run();
 		try {
 			$client = new Client;
-			var_dump($tokenGenerator->data->token);
 			$request = $client->request('POST', getenv('API_URL') . '/api/grade', [
 				'headers' => [
 					'Authorization' => $tokenGenerator->data->token,
@@ -43,6 +53,5 @@ class Grades {
 			return 'failed';
 		}
 		return $responseBody;
-
 	}
 }
